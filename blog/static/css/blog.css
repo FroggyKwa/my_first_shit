@@ -42,12 +42,16 @@ h1, h2, h3, h4 {
     width: 100%;
 }
 
-.top-menu, .top-menu:hover, .top-menu:visited {
-    color: #ffffff;
+.top-menu, .top-meny:hover .top-menu:visited 
+{
+    color: #f2f2f2;
     float: right;
     font-size: 26pt;
+    font-family: 'Ubuntu';
     margin-right: 20px;
+    padding-left: 100px;
 }
+
 
 .post {
     margin-bottom: 70px;
