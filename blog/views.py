@@ -8,8 +8,8 @@ from django.template import RequestContext
 
 
 def post_list(request):
-    posts = Post.objects.all().order_by('published_date')
-    return render(request, 'blog/post_list.html', {'posts': posts})
+     posts = Post.objects.all().order_by('published_date') 
+     return render(request, 'blog/post_list.html', {'posts': posts})
 
 
 def post_detail(request, pk):
@@ -22,7 +22,6 @@ def post_new(request):
         form = PostForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
-            post.author = request.user
             post.published_date = timezone.now()
             post.save()
             return redirect('post_detail', pk=post.pk)
@@ -30,16 +29,3 @@ def post_new(request):
         form = PostForm()
     return render(request, 'blog/post_edit.html', {'form': form})
 
-def signup(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            my_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=my_password)
-            login(request, user)
-            return redirect('/')
-    else:
-        form = UserCreationForm()
-    return render(request, 'blog/signup.html', {'form': form})
