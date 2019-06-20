@@ -1,14 +1,11 @@
 from django.utils import timezone
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post
-from django.contrib.auth.forms import UserCreationForm
 from .forms import PostForm
-from django.contrib.auth import authenticate, login
-from django.template import RequestContext
 
 
 def post_list(request):
-     posts = Post.objects.all().order_by('published_date') 
+     posts = Post.objects.all().order_by('-published_date')
      return render(request, 'blog/post_list.html', {'posts': posts})
 
 
